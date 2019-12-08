@@ -10,12 +10,14 @@ namespace Performance
     {
         static void Main(string[] args)
         {
+            var perf = new StringPerformance();
             var summary = BenchmarkRunner.Run<StringPerformance>();
             Console.WriteLine(summary);
-            Execute(_ => new StringPerformance().ToSnakeCaseUsingStringBuildAndSpan(), "UsingStringBuilderAndSpan");
-            Execute(_ => new StringPerformance().ToSnakeCaseUsingSpanOnBuffer(), "UsingSpanOnBuffer");
-            Execute(_ => new StringPerformance().ToSnakeCaseUsingRegex(), "UsingRegex");
-            Execute(_ => new StringPerformance().ToSnakeCaseUsingLinq(), "UsingLinq");
+
+            Execute(_ => perf.ToSnakeCaseUsingStringBuildAndSpan(), "UsingStringBuilderAndSpan");
+            Execute(_ => perf.ToSnakeCaseUsingSpanOnBuffer(), "UsingSpanOnBuffer");
+            Execute(_ => perf.ToSnakeCaseUsingRegex(), "UsingRegex");
+            Execute(_ => perf.ToSnakeCaseUsingLinq(), "UsingLinq");
 
             Console.ReadKey();
         }
